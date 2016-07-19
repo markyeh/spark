@@ -1,0 +1,18 @@
+.catalog:
+  name: "Foxconn Spark"
+  version: v0.0.1
+  description: |
+    (Experimental) Hadoop+Spark cluster.
+  minimum_rancher_version: v0.56.0
+  uuid: spark-0
+  questions:
+    - variable: "node_count"
+      description: "Number of cluster nodes"
+      label: "Node Count:"
+      required: true
+      default: 2
+      type: "int"
+spark-slave:
+  scale: ${node_count} - 1
+spark-master:
+  scale: 1

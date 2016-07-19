@@ -1,0 +1,19 @@
+caffe-app:
+  net: "host"
+  depends_on:
+    - spark-slave
+  privileged: true
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: hosts=agent-1
+  image: markyeh/caffe-app:latest
+caffe-spark:
+  net: "host"
+  volumes:
+    - /var/lib/nvidia-docker/volumes/nvidia_driver/361.45.18:/usr/local/nvidia:ro
+  privileged: true
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.global: 'true'
+    io.rancher.scheduler.affinity:host_label_ne: hosts=agent-1
+  image: markyeh/caffe-spark:latest
