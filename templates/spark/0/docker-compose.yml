@@ -2,7 +2,7 @@ spark-master:
   net: "host"
   volumes:
     - /var/lib/nvidia-docker/volumes/nvidia_driver/361.45.18:/usr/local/nvidia:ro
-  depends_on:
+  links:
     - spark-slave
   privileged: true
   labels:

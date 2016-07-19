@@ -1,6 +1,6 @@
 caffe-app:
   net: "host"
-  depends_on:
+  links:
     - spark-slave
   privileged: true
   labels:
